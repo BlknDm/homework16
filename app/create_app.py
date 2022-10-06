@@ -3,9 +3,7 @@ import json
 from flask import Flask
 
 from app import db
-from app.models import User, Offer, Order
-
-
+from app.models import Offer, Order, User
 
 
 def load_data(path):
@@ -56,7 +54,7 @@ def load_user(path):
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['RESTX_JSON'] = {'ensure_ascii': False, 'indent': 4}
     app.config['SQLALCHEMY_ECHO'] = True
@@ -73,6 +71,3 @@ def create_app():
 
 
 app = create_app()
-
-
-

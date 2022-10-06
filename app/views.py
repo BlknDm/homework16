@@ -2,7 +2,8 @@ import json
 
 from flask import request
 
-from app.create_app import db, app
+from app.create_app import app
+from app import db
 from app.models import User, Order, Offer
 
 

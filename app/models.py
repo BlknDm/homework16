@@ -39,8 +39,8 @@ class Order(db.Model):
     customer_id = db.Column(db.Integer, db.ForeignKey(f'{User.__tablename__}.id'))
     executor_id = db.Column(db.Integer, db.ForeignKey(f'{User.__tablename__}.id'))
 
-    customer = db.relationship('User', foreign_key=[customer_id])
-    executor = db.relationship('User', foreign_key=[executor_id])
+    customer = db.relationship('User', foreign_keys=[customer_id])
+    executor = db.relationship('User', foreign_keys=[executor_id])
 
     def return_data(self):
         return {
@@ -67,8 +67,8 @@ class Offer(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey(f"{Order.__tablename}.id"))
     executor_id = db.Column(db.Integer, db.ForeignKey(f"{User.__tablename__}.id"))
 
-    order = db.relationship('Order')
-    executor = db.relationship('User')
+    order = db.relationship('Order', foreign_keys=[order_id])
+    executor = db.relationship('User', foreign_keys=[executor_id])
 
     def return_data(self):
         return {
